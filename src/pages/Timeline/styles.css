@@ -1,10 +1,32 @@
 .timeline-wrapper {
-  width: 600px;
+  max-width: 600px;
   margin: 50px auto;
 
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+
+.timeline-wrapper .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.timeline-wrapper .logo {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-wrapper .bookmarks {
+  align-self: flex-end;
+}
+
+.timeline-wrapper .divLoader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .timeline-wrapper form {
@@ -24,7 +46,7 @@
   resize: none;
 }
 
-.tweet-list {
+.dog-list {
   list-style: none;
   color: #1c2022;
 }

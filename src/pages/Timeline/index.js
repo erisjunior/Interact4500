@@ -1,78 +1,85 @@
 import React, { Component } from "react";
+import InfiniteScroll from "react-infinite-scroller";
+
 import api from "../../services/api";
+import dogApi from "../../services/dogApi";
+
 import socket from "socket.io-client";
 
 import "./styles.css";
-import instadogramLogo from "../../assets/instadogram.png";
+import "./loader.css";
 
-import Tweet from "../../components/Tweet";
+import instadogramLogo from "../../assets/instadogram.png";
+import bookmarkSolid from "../../assets/bookmark-solid.svg";
+
+import Dog from "../../components/Dog";
 
 export default class Timeline extends Component {
   state = {
-    tweets: [],
-    newTweet: ""
+    dogs: [],
+    user: ""
   };
 
   async componentDidMount() {
     this.subscribeToEvents();
 
-    const response = await api.get("tweets");
+    const response = await dogApi.get("images/search?limit=10");
+    const user = await localStorage.getItem("@InstaDogram:username");
 
-    this.setState({ tweets: response.data });
+    this.setState({ dogs: response.data, user });
   }
 
   subscribeToEvents = () => {
-    const io = socket("http://localhost:3000");
-
-    io.on("tweet", data => {
-      this.setState({ tweets: [data, ...this.state.tweets] });
-    });
-
-    io.on("like", data => {
-      this.setState({
-        tweets: this.state.tweets.map(tweet =>
-          tweet._id === data._id ? data : tweet
-        )
-      });
-    });
-  };
-
-  handleInputChange = e => {
-    this.setState({
-      newTweet: e.target.value
-    });
-  };
-
-  handleNewTweet = async e => {
-    if (e.keyCode !== 13) return;
-
-    const content = this.state.newTweet;
-    const author = localStorage.getItem("@GoTwitter:username");
-
-    await api.post("tweets", { content, author });
-
-    this.setState({ newTweet: "" });
+    return;
   };
 
   render() {
+    const { dogs, user } = this.state;
+
     return (
       <div className="timeline-wrapper">
-        <img height={24} src={instadogramLogo} alt="InstaDogram" />
-
-        <form>
-          <textarea
-            value={this.state.newTweet}
-            onChange={this.handleInputChange}
-            onKeyDown={this.handleNewTweet}
-            placeholder="O que foi mano?"
+        <div className="header">
+          <div />
+          <div className="logo">
+            <img width={50} src={instadogramLogo} alt="InstaDogram" />
+            <strong>Hello, {user}</strong>
+          </div>
+          <img
+            className="bookmarks"
+            width={20}
+            src={bookmarkSolid}
+            alt="bookmarkSolid"
           />
-        </form>
+        </div>
 
-        <ul className="tweet-list">
-          {this.state.tweets.map(tweet => (
-            <Tweet key={tweet._id} tweet={tweet} />
-          ))}
-        </ul>
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={async () => {
+            const { dogs } = this.state;
+            const response = await dogApi.get("images/search?limit=5");
+            response.data.map(res => {
+              dogs.push(res);
+            });
+            this.setState({ dogs });
+          }}
+          hasMore={true}
+          loader={
+            <div className="divLoader" key={0}>
+              <div className="loader">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+            </div>
+          }
+        >
+          <ul className="dog-list">
+            {dogs.map(dog => (
+              <Dog key={dog.id} dog={dog} />
+            ))}
+          </ul>
+        </InfiniteScroll>
       </div>
     );
   }

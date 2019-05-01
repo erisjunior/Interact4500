@@ -4,23 +4,24 @@ import api from "../../services/api";
 import "./styles.css";
 import like from "../../assets/like.svg";
 
-export default class Tweet extends Component {
+export default class Dog extends Component {
   handleLike = async () => {
-    const { _id } = this.props.tweet;
+    const { id } = this.props.dog;
 
-    await api.post(`likes/${_id}`);
+    await api.post(`likes/${id}`);
   };
 
   render() {
-    const { tweet } = this.props;
+    const { dog } = this.props;
 
     return (
-      <li className="tweet">
-        <strong>{tweet.autho}</strong>
-        <p>{tweet.content}</p>
+      <li className="dog">
+        <div className="divImg">
+          <img src={dog.url} alt={dog.id} />
+        </div>
         <button type="button" onClick={this.handleLike}>
           <img src={like} alt="like" />
-          {tweet.likes}
+          {/* {tweet.likes} */}
         </button>
       </li>
     );
