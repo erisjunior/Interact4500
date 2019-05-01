@@ -1,43 +1,51 @@
 .dog {
-  padding: 20px 20px 0;
   margin: 20px 0 0;
-  border-top: 1px solid #eee;
+  border: 1px solid #c7cacc;
 }
 
 .dog .divImg {
-  max-height: 300px;
   overflow: hidden;
+  max-height: 300px;
 }
-.dog img {
+.dog .divImg img {
   width: 100%;
 }
 
-/* .dog:first-child {
-  margin-top: 0;
-  padding-top: 0;
-  border: 0;
-} */
-
-/* .dog p {
-  margin: 15px 0;
-  font-size: 14px;
-  line-height: 20px;
-} */
+.dog .footer {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #c7cacc;
+  justify-content: space-between;
+}
+.dog .footer img {
+  width: 25px;
+}
+.dog .footer .bookmark {
+  width: 20px;
+}
+.dog .footer .init {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 
 .dog button {
   border: 0;
   background: transparent;
 
   display: flex;
-  align-items: center;
   color: #697882;
   cursor: pointer;
+  align-items: center;
 }
 
 .dog button img {
+  transition: 0.5s;
   margin-right: 5px;
 }
 
 .dog button:hover {
   opacity: 0.7;
+  transition: 0.5s;
 }

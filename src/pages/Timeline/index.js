@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
-import api from "../../services/api";
 import dogApi from "../../services/dogApi";
 
 import socket from "socket.io-client";
@@ -30,7 +29,14 @@ export default class Timeline extends Component {
   }
 
   subscribeToEvents = () => {
-    return;
+    const io = socket("http://localhost:3000");
+
+    io.on("like", data => {
+      console.log(data);
+      // this.setState({
+      //   dogs: this.state.dogs.map(dog => (dog.id === data.id ? data : dog))
+      // });
+    });
   };
 
   render() {
