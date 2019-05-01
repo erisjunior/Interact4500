@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import api from "../services/api";
+import api from "../../services/api";
 import socket from "socket.io-client";
 
-import "./Timeline.css";
-import instadogramLogo from "../assets/instadogram.png";
+import "./styles.css";
+import instadogramLogo from "../../assets/instadogram.png";
 
-import Tweet from "../components/Tweet";
+import Tweet from "../../components/Tweet";
 
 export default class Timeline extends Component {
   state = {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import instadogramLogo from "../assets/instadogram.png";
-import "./Login.css";
+import instadogramLogo from "../../assets/instadogram.png";
+import "./styles.css";
 
 export default class Login extends Component {
   state = {
@@ -15,7 +15,7 @@ export default class Login extends Component {
 
     if (!username.length) return;
 
-    localStorage.setItem("@GoTwitter:username", username);
+    localStorage.setItem("@InstaDogram:username", username);
 
     this.props.history.push("/timeline");
   };

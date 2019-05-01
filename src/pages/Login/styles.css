@@ -28,7 +28,7 @@
 
 .login-wrapper form button {
   margin: 10px 0 0;
-  background: #4bb0ee;
+  background: linear-gradient(to right, #8a3ab9, #bc2a8d, #fbad50);
   border-radius: 5px;
   height: 44px;
   border: 0;
@@ -36,8 +36,11 @@
   font-weight: bold;
   cursor: pointer;
   font-size: 16px;
+  transition: 0.5s;
 }
 
 .login-wrapper form button:hover {
-  background: #42a1db;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 0 -10px 0;
+  transition: 0.5s;
 }
