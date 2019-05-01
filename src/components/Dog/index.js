@@ -42,7 +42,7 @@ export default class Dog extends Component {
               {dog.liked ? (
                 <img src={likeSolid} alt="likeSolid" />
               ) : (
-                <img src={like} alt="like" disabled />
+                <img src={like} alt="like" />
               )}
               {likes}
             </button>
@@ -56,7 +56,6 @@ export default class Dog extends Component {
                 src={bookmarkSolid}
                 className="bookmark"
                 alt="bookmarkSolid"
-                disabled
               />
             ) : (
               <img src={bookmark} className="bookmark" alt="bookmark" />

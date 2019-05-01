@@ -13,6 +13,7 @@ import bookmarkSolid from "../../assets/bookmark-solid.svg";
 
 import Dog from "../../components/Dog";
 import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 export default class Timeline extends Component {
   state = {
@@ -54,24 +55,24 @@ export default class Timeline extends Component {
           return like;
         }
       });
-      var filtered = likes.filter(function(el) {
+      let filtered = likes.filter(function(el) {
         return el != null;
       });
       if (filtered.length > 0) {
         dog.liked = true;
       }
     }
-    if (dog.boookmarkeds) {
-      const boookmarks = dog.boookmarkeds.map(boookmark => {
-        if (boookmark.user === localStorage.getItem("@InstaDogram:username")) {
-          return boookmark;
+    if (dog.bookmarkeds) {
+      const bookmarks = dog.bookmarkeds.map(bookmark => {
+        if (bookmark.user === localStorage.getItem("@InstaDogram:username")) {
+          return bookmark;
         }
       });
-      var filtered = boookmarks.filter(function(el) {
+      let filtered = bookmarks.filter(function(el) {
         return el != null;
       });
       if (filtered.length > 0) {
-        dog.boookmarked = true;
+        dog.bookmarked = true;
       }
     }
     await this.setState({
@@ -99,12 +100,9 @@ export default class Timeline extends Component {
             <img width={50} src={instadogramLogo} alt="InstaDogram" />
             <strong>Hello, {user}</strong>
           </div>
-          <img
-            className="bookmarks"
-            width={20}
-            src={bookmarkSolid}
-            alt="bookmarkSolid"
-          />
+          <Link className="bookmarks" to="bookmark">
+            <img width={20} src={bookmarkSolid} alt="bookmarkSolid" />
+          </Link>
         </div>
 
         <InfiniteScroll
