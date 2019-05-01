@@ -81,7 +81,7 @@ export default class Timeline extends Component {
   };
 
   subscribeToEvents = () => {
-    const io = socket(process.env.API_URL || "http://localhost:3000");
+    const io = socket(process.env.REACT_APP_API_URL || "http://localhost:3000");
 
     io.on("like", data => this.loadDog(data));
     io.on("dislike", data => this.loadDog(data));
