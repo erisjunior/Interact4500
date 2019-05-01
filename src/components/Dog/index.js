@@ -10,21 +10,26 @@ import comment from "../../assets/comment.svg";
 
 export default class Dog extends Component {
   handleLike = async () => {
-    const { id } = this.props.dog;
+    const { id, url } = this.props.dog;
     const user = localStorage.getItem("@InstaDogram:username");
 
-    await api.post(`likes/`, { id, user });
+    await api.post(`likes/`, { id, url, user });
   };
 
   handleBookmark = async () => {
-    const { id } = this.props.dog;
+    const { id, url } = this.props.dog;
     const user = localStorage.getItem("@InstaDogram:username");
 
-    await api.post(`bookmarks/`, { id, user });
+    await api.post(`bookmarks/`, { id, url, user });
   };
 
   render() {
     const { dog } = this.props;
+
+    let likes = 0;
+    if (dog.likes) {
+      likes = dog.likes;
+    }
 
     return (
       <li className="dog">
@@ -39,9 +44,9 @@ export default class Dog extends Component {
               ) : (
                 <img src={like} alt="like" disabled />
               )}
-              {dog.likes}
+              {likes}
             </button>
-            <button type="button" onClick={this.handleLike}>
+            <button type="button" className="comment" onClick={this.handleLike}>
               <img src={comment} alt="comment" />
             </button>
           </div>
@@ -58,7 +63,6 @@ export default class Dog extends Component {
             )}
           </button>
         </div>
-        {dog.likes}
       </li>
     );
   }

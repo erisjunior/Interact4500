@@ -12,6 +12,7 @@ import instadogramLogo from "../../assets/instadogram.png";
 import bookmarkSolid from "../../assets/bookmark-solid.svg";
 
 import Dog from "../../components/Dog";
+import api from "../../services/api";
 
 export default class Timeline extends Component {
   state = {
@@ -21,22 +22,70 @@ export default class Timeline extends Component {
 
   async componentDidMount() {
     this.subscribeToEvents();
+    await this.loadDogs();
 
-    const response = await dogApi.get("images/search?limit=10");
     const user = await localStorage.getItem("@InstaDogram:username");
-
-    this.setState({ dogs: response.data, user });
+    await this.setState({ user });
   }
+
+  loadDogs = async () => {
+    let { dogs } = this.state;
+    const dogsApi = await api.get("dogs");
+    const response = await dogApi.get("images/search?limit=10");
+
+    response.data.map(res => {
+      dogs.push(res);
+    });
+
+    const filteredDogs = dogs.filter((dog, i) => {
+      return dogs.indexOf(dog) === i;
+    });
+
+    await this.setState({ dogs: filteredDogs });
+
+    dogsApi.data.map(data => this.loadDog(data));
+  };
+
+  loadDog = async data => {
+    let dog = data;
+    if (dog.likeds) {
+      const likes = dog.likeds.map(like => {
+        if (like.user === localStorage.getItem("@InstaDogram:username")) {
+          return like;
+        }
+      });
+      var filtered = likes.filter(function(el) {
+        return el != null;
+      });
+      if (filtered.length > 0) {
+        dog.liked = true;
+      }
+    }
+    if (dog.boookmarkeds) {
+      const boookmarks = dog.boookmarkeds.map(boookmark => {
+        if (boookmark.user === localStorage.getItem("@InstaDogram:username")) {
+          return boookmark;
+        }
+      });
+      var filtered = boookmarks.filter(function(el) {
+        return el != null;
+      });
+      if (filtered.length > 0) {
+        dog.boookmarked = true;
+      }
+    }
+    await this.setState({
+      dogs: this.state.dogs.map(index => (index.id === dog.id ? dog : index))
+    });
+  };
 
   subscribeToEvents = () => {
     const io = socket("http://localhost:3000");
 
-    io.on("like", data => {
-      console.log(data);
-      // this.setState({
-      //   dogs: this.state.dogs.map(dog => (dog.id === data.id ? data : dog))
-      // });
-    });
+    io.on("like", data => this.loadDog(data));
+    io.on("dislike", data => this.loadDog(data));
+    io.on("bookmark", data => this.loadDog(data));
+    io.on("unbookmark", data => this.loadDog(data));
   };
 
   render() {
@@ -60,14 +109,7 @@ export default class Timeline extends Component {
 
         <InfiniteScroll
           pageStart={0}
-          loadMore={async () => {
-            const { dogs } = this.state;
-            const response = await dogApi.get("images/search?limit=5");
-            response.data.map(res => {
-              dogs.push(res);
-            });
-            this.setState({ dogs });
-          }}
+          loadMore={this.loadDogs}
           hasMore={true}
           loader={
             <div className="divLoader" key={0}>
@@ -81,8 +123,8 @@ export default class Timeline extends Component {
           }
         >
           <ul className="dog-list">
-            {dogs.map(dog => (
-              <Dog key={dog.id} dog={dog} />
+            {dogs.map((dog, i) => (
+              <Dog key={i} dog={dog} />
             ))}
           </ul>
         </InfiniteScroll>

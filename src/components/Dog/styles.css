@@ -24,6 +24,9 @@
 .dog .footer .bookmark {
   width: 20px;
 }
+.dog .footer .comment {
+  margin-left: 10px;
+}
 .dog .footer .init {
   display: flex;
   flex-direction: row;
