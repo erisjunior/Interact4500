@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Container } from './styles';
 
-export default class Home extends Component {
+export default class SignIn extends Component {
   render() {
     return <Container />
   }
