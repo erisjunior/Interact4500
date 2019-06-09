@@ -25,3 +25,4 @@ yarn-error.log*
 /src/Example.js
 
 /src/services/Example.js
+/src/services/firebase/FirebaseUtil.js
