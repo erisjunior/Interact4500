@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../config/colors'
 
-import CalendarComponent from 'react-calendar'
-
 export const MainPhoto = styled.div`
   background: url('/assets/fotoOficialBlur.jpg');
   background-size: cover;
@@ -57,12 +55,6 @@ export const News = styled.div`
   align-items: space-between;
 `
 
-export const Calendar = styled(CalendarComponent)`
-  align-self: center;
-  width: 70%;
-  height: 500px;
-`
-
 export const About = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,4 +66,10 @@ export const Map = styled.iframe`
   width: 70%;
   height: 500px;
   border: 1px solid ${colors.grey};
+`
+
+export const FooterLogo = styled.img`
+  height: 50px;
+  margin: 50px 0 20px 0;
+  align-self: center;
 `

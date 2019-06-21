@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: none;
 
   @media (min-width: 769px) {
-    z-index: 1;
+    z-index: 5;
     top: 0;
     width: 100%;
     padding: 0 10%;

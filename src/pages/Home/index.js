@@ -1,18 +1,30 @@
 import React, { Component } from 'react'
+import moment from 'moment'
+
+//@import 'react-big-calendar/lib/sass/styles';
 
 import {
   Container,
   Logo,
   Map,
-  Calendar,
   MainPhoto,
   News,
-  About
+  About,
+  FooterLogo
 } from './styles'
+
+import Calendar from '../../components/Calendar'
 
 export default class Home extends Component {
   state = {
-    headerDisplayClass: 'normal'
+    headerDisplayClass: 'normal',
+    events: [
+      {
+        start: new Date(moment('20190628', 'YYYYMMDD')),
+        end: new Date(moment('20190630', 'YYYYMMDD')),
+        title: 'CODIC da Liderança'
+      }
+    ]
   }
 
   componentDidMount() {
@@ -43,15 +55,14 @@ export default class Home extends Component {
         </MainPhoto>
         <Container>
           <News />
-
-          <Calendar />
-
+          <Calendar events={this.state.events} />
           <About>
             <Map
               title='map'
               src='https://www.google.com/maps/d/u/0/embed?mid=1NaXavMlMmBfrN5Qg0ZCxx7ukEChIt0bD'
             />
           </About>
+          <FooterLogo src='/assets/logoInteract.png' alt='Logo Gestão 19-20' />
         </Container>
       </>
     )

@@ -5,7 +5,7 @@ import Routes from './routes'
 
 import { observer } from 'mobx-react'
 import Header from './components/Header'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 
 class App extends Component {
   state = {}
@@ -17,7 +17,7 @@ class App extends Component {
         <Switch>
           <Route path='*' component={Routes} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     )
   }
