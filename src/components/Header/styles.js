@@ -33,7 +33,6 @@ export const Container = styled.div`
 export const ItemNav = styled.span`
   :nth-child(4) {
     margin-left: 60px;
-    border-bottom: 1px solid transparent;
   }
 
   display: flex;
@@ -44,7 +43,7 @@ export const ItemNav = styled.span`
   justify-content: center;
   margin-left: 5px;
   padding: 8px;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
 
   svg {
     margin: 0 5px;

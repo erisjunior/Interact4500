@@ -6,16 +6,24 @@ import moment from 'moment'
 import {
   Container,
   Logo,
+  Title,
   Map,
   MainPhoto,
+  NewsContainer,
   News,
   About,
+  InfoContainer,
+  AboutDescription,
+  Info,
+  InfoHeader,
+  InfoBody,
   FooterLogo
 } from './styles'
 
 import Calendar from '../../components/Calendar'
 
-import { Video, Sun } from 'react-feather'
+import { Video, Sun, Calendar as CalendarIcon } from 'react-feather'
+import { colors } from '../../config/colors'
 
 export default class Home extends Component {
   state = {
@@ -33,17 +41,21 @@ export default class Home extends Component {
     window.onscroll = () => this.handleScroll()
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.headerDisplayClass === nextState.headerDisplayClass
+  //     ? false
+  //     : true
+  // }
+
   handleScroll = () => {
-    let { headerDisplayClass } = this.state
+    const { headerDisplayClass } = this.state
     const height = document.documentElement.scrollTop
 
     if (headerDisplayClass !== 'shrink' && height > 400) {
-      headerDisplayClass = 'shrink'
+      this.setState({ headerDisplayClass: 'shrink' })
     } else if (headerDisplayClass === 'shrink' && height < 300) {
-      headerDisplayClass = 'normal'
+      this.setState({ headerDisplayClass: 'normal' })
     }
-
-    this.setState({ headerDisplayClass })
   }
   render() {
     return (
@@ -56,24 +68,58 @@ export default class Home extends Component {
           />
         </MainPhoto>
         <Container>
-          <News>
-            <h1>
-              Saiba o que acontece no distrito mais badalado
-              <Video />
-            </h1>
-          </News>
-          <Calendar events={this.state.events} />
-          <About>
-            <h1>
-              Caloroso
-              <Sun />
-            </h1>
-
-            <Map
-              title='map'
-              src='https://www.google.com/maps/d/u/0/embed?mid=1NaXavMlMmBfrN5Qg0ZCxx7ukEChIt0bD'
+          <Title>
+            Novidades Calorosas
+            <Video color={colors.interact} fill={colors.interact} size={40} />
+          </Title>
+          <NewsContainer>
+            <News />
+            <News />
+            <News />
+          </NewsContainer>
+        </Container>
+        <About>
+          <Title>
+            Caloroso
+            <Sun
+              color={colors.rotaryyellow}
+              fill={colors.rotaryyellow}
+              size={50}
             />
-          </About>
+          </Title>
+
+          <InfoContainer>
+            <Info>
+              <InfoHeader>3</InfoHeader>
+              <InfoBody>Estados</InfoBody>
+            </Info>
+            <Info>
+              <InfoHeader>17</InfoHeader>
+              <InfoBody>Clubes</InfoBody>
+            </Info>
+            <Info>
+              <InfoHeader>180</InfoHeader>
+              <InfoBody>Associados</InfoBody>
+            </Info>
+          </InfoContainer>
+
+          <AboutDescription>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab soluta
+            fuga rem unde sed ipsa neque, quia, minima sunt labore facilis est,
+            expedita modi officiis enim illo fugiat eaque inventore?
+          </AboutDescription>
+
+          <Map
+            title='map'
+            src='https://www.google.com/maps/d/u/0/embed?mid=1NaXavMlMmBfrN5Qg0ZCxx7ukEChIt0bD'
+          />
+        </About>
+        <Container>
+          <Title>
+            Acompanhe as Atividades
+            <CalendarIcon color={colors.rotaract} size={40} />
+          </Title>
+          <Calendar events={this.state.events} />
           <FooterLogo src='/assets/logoInteract.png' alt='Logo Gestão 19-20' />
         </Container>
       </>
