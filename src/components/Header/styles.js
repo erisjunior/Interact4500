@@ -13,9 +13,10 @@ export const Container = styled.div`
     display: flex;
     position: fixed;
     align-items: center;
-    background: ${colors.lightgrey};
-    border-bottom: 1px solid ${colors.grey};
     justify-content: space-between;
+    background: ${colors.lightgrey};
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   .icons {

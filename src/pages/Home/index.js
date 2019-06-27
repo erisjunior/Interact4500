@@ -15,6 +15,8 @@ import {
 
 import Calendar from '../../components/Calendar'
 
+import { Video, Sun } from 'react-feather'
+
 export default class Home extends Component {
   state = {
     headerDisplayClass: 'normal',
@@ -48,15 +50,25 @@ export default class Home extends Component {
       <>
         <MainPhoto>
           <Logo
-            src='/assets/logo.png'
+            src='/assets/logocomInteract.png'
             alt='Logo Gestão 19-20'
             className={this.state.headerDisplayClass}
           />
         </MainPhoto>
         <Container>
-          <News />
+          <News>
+            <h1>
+              Saiba o que acontece no distrito mais badalado
+              <Video />
+            </h1>
+          </News>
           <Calendar events={this.state.events} />
           <About>
+            <h1>
+              Caloroso
+              <Sun />
+            </h1>
+
             <Map
               title='map'
               src='https://www.google.com/maps/d/u/0/embed?mid=1NaXavMlMmBfrN5Qg0ZCxx7ukEChIt0bD'

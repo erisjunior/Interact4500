@@ -39,7 +39,11 @@ export const MainPhoto = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 50%;
+  width: 75%;
+
+  @media (min-width: 1500px) {
+    width: 40%;
+  }
 `
 
 export const Container = styled.div`
@@ -47,6 +51,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: space-between;
   padding: 0 10%;
+
+  @media (min-width: 1800px) {
+    max-width: 1800px;
+    margin: 0 auto;
+  }
 `
 
 export const News = styled.div`
