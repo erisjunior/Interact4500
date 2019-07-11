@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../config/colors.js'
+import { colors } from '../../../../config/colors.js'
 
 export const Container = styled.div`
   display: none;

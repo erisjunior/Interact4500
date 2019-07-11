@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 
-//@import 'react-big-calendar/lib/sass/styles';
-
 import {
   Container,
   Logo,
   Title,
   Map,
   MainPhoto,
-  NewsContainer,
-  News,
   About,
   InfoContainer,
   AboutDescription,
@@ -20,9 +16,10 @@ import {
   FooterLogo
 } from './styles'
 
-import Calendar from '../../components/Calendar'
+import Calendar from './components/Calendar'
+import Header from './components/Header'
 
-import { Video, Sun, Calendar as CalendarIcon } from 'react-feather'
+import { Sun, Calendar as CalendarIcon } from 'react-feather'
 import { colors } from '../../config/colors'
 
 export default class Home extends Component {
@@ -41,12 +38,6 @@ export default class Home extends Component {
     window.onscroll = () => this.handleScroll()
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.state.headerDisplayClass === nextState.headerDisplayClass
-  //     ? false
-  //     : true
-  // }
-
   handleScroll = () => {
     const { headerDisplayClass } = this.state
     const height = document.documentElement.scrollTop
@@ -60,6 +51,7 @@ export default class Home extends Component {
   render() {
     return (
       <>
+        <Header />
         <MainPhoto>
           <Logo
             src='/assets/logocomInteract.png'
@@ -67,6 +59,8 @@ export default class Home extends Component {
             className={this.state.headerDisplayClass}
           />
         </MainPhoto>
+        {/*
+          import News,NewsContainer e Video (Icon)
         <Container>
           <Title>
             Novidades Calorosas
@@ -75,9 +69,8 @@ export default class Home extends Component {
           <NewsContainer>
             <News />
             <News />
-            <News />
           </NewsContainer>
-        </Container>
+        </Container> */}
         <About>
           <Title>
             Caloroso

@@ -8,9 +8,9 @@ const Header = () => (
   <Container>
     <img src='/assets/logoInteract.png' alt='Interact' />
     <div className='icons'>
-      <ItemNav>Notícias</ItemNav>
+      {/* <ItemNav>Notícias</ItemNav>
       <ItemNav>Calendário</ItemNav>
-      <ItemNav>Sobre</ItemNav>
+      <ItemNav>Sobre</ItemNav> */}
       <ItemNav>
         Entrar
         <LogIn width='18px' height='18px' />

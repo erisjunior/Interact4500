@@ -4,8 +4,6 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import Routes from './routes'
 
 import { observer } from 'mobx-react'
-import Header from './components/Header'
-// import Footer from './components/Footer'
 
 class App extends Component {
   state = {}
@@ -13,7 +11,6 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Header />
         <Switch>
           <Route path='*' component={Routes} />
         </Switch>

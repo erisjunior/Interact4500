@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../config/colors'
 
 export const MainPhoto = styled.div`
-  background: url('/assets/fotoOficialBlur.jpg');
+  background: url('/assets/fotoOficialBlurPreto.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -82,17 +82,19 @@ export const Title = styled.p`
 export const NewsContainer = styled.div`
   align-self: center;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 50px;
 `
 
 export const News = styled.div`
-  height: 300px;
-  width: 300px;
+  height: 500px;
+  width: 800px;
   border-radius: 5px;
   border: 1px solid ${colors.grey};
-  margin: 0 20px;
+  margin: 10px 20px;
 `
 
 export const About = styled.div`
