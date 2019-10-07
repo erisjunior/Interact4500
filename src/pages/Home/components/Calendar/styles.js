@@ -6,5 +6,7 @@ export const CalendarComponent = styled(Calendar)`
   align-self: center;
   width: 100%;
   padding: 30px;
+  padding-bottom: 60px;
   border: 1px solid ${colors.grey};
+  height: 700px;
 `

@@ -4,14 +4,16 @@ import { Container, ItemNav } from './styles'
 
 import { LogIn } from 'react-feather'
 
-const Header = () => (
+import { withRouter } from 'react-router'
+
+const Header = ({ history }) => (
   <Container>
     <img src='/assets/logoInteract.png' alt='Interact' />
     <div className='icons'>
       {/* <ItemNav>Notícias</ItemNav>
       <ItemNav>Calendário</ItemNav>
       <ItemNav>Sobre</ItemNav> */}
-      <ItemNav>
+      <ItemNav onClick={() => history.push('/signin')}>
         Entrar
         <LogIn width='18px' height='18px' />
       </ItemNav>
@@ -19,4 +21,4 @@ const Header = () => (
   </Container>
 )
 
-export default Header
+export default withRouter(Header)

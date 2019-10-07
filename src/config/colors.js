@@ -8,5 +8,5 @@ export const colors = {
   lightgrey: '#f9f9f9',
 
   white: '#ffffff',
-  black: '#000000'
+  black: '#333333'
 }
